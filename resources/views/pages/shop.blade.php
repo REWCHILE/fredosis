@@ -48,8 +48,38 @@
                     class="bg-[#121214] border border-[#232326] rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-[#d8c49d]/50 transition-all shadow-xl"
                     x-data="{ 
                         selectedVariantId: {{ $originalVariant->id ?? 0 }},
-                        selectedPriceUsd: {{ $originalVariant->price_usd ?? $product->base_price_usd }},
-                        selectedPriceClp: {{ $originalVariant->price_clp ?? $product->base_price_clp }}
+                        variants: [
+                            @foreach($product->variants as $v)
+                                {
+                                    id: {{ $v->id }},
+                                    name: '{{ addslashes($v->format_name) }}',
+                                    usd: {{ (float) $v->price_usd }},
+                                    clp: {{ (float) $v->price_clp }},
+                                    eur: {{ (float) $v->price_eur }},
+                                    mxn: {{ (float) $v->price_mxn }}
+                                },
+                            @endforeach
+                        ],
+                        selectedVariant() {
+                            return this.variants.find(v => v.id == this.selectedVariantId) || this.variants[0];
+                        },
+                        formatCurrentPrice() {
+                            const v = this.selectedVariant();
+                            if (!v) return '$0 USD';
+                            const curr = activeCurrency || 'USD';
+                            if (curr === 'CLP') return '$' + Math.round(v.clp).toLocaleString('es-CL') + ' CLP';
+                            if (curr === 'EUR') return '€' + Number(v.eur).toFixed(2) + ' EUR';
+                            if (curr === 'MXN') return '$' + Number(v.mxn).toFixed(2) + ' MXN';
+                            return '$' + Number(v.usd).toFixed(0) + ' USD';
+                        },
+                        formatSecondaryPrice() {
+                            const v = this.selectedVariant();
+                            if (!v) return '';
+                            const curr = activeCurrency || 'USD';
+                            if (curr === 'USD') return '≈ $' + Math.round(v.clp).toLocaleString('es-CL') + ' CLP';
+                            if (curr === 'CLP') return '≈ $' + Number(v.usd).toFixed(0) + ' USD';
+                            return '≈ $' + Number(v.usd).toFixed(0) + ' USD';
+                        }
                     }"
                 >
                     <div>
@@ -124,19 +154,11 @@
                                 <label class="text-[11px] uppercase tracking-wider text-[#777] font-semibold block">Formato de Adquisición:</label>
                                 <select 
                                     x-model="selectedVariantId"
-                                    @change="
-                                        @foreach($product->variants as $v)
-                                            if (selectedVariantId == {{ $v->id }}) {
-                                                selectedPriceUsd = {{ $v->price_usd }};
-                                                selectedPriceClp = {{ $v->price_clp }};
-                                            }
-                                        @endforeach
-                                    "
-                                    class="w-full bg-[#18181b] border border-[#2c2c30] rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#d8c49d]"
+                                    class="w-full bg-[#18181b] border border-[#2c2c30] rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#d8c49d] cursor-pointer"
                                 >
                                     @foreach($product->variants as $variant)
                                         <option value="{{ $variant->id }}">
-                                            {{ $variant->format_name }} — ${{ number_format($variant->price_usd, 0) }} USD
+                                            {{ $variant->format_name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -146,17 +168,16 @@
                             <div class="pt-2 border-t border-[#232326] flex items-center justify-between gap-4">
                                 <div>
                                     <div class="text-2xl font-serif font-bold text-[#d8c49d]">
-                                        <span x-text="'$' + selectedPriceUsd + ' USD'">${{ number_format($product->base_price_usd, 0) }} USD</span>
+                                        <span x-text="formatCurrentPrice()"></span>
                                     </div>
-                                    <div class="text-[11px] text-[#777] font-mono" x-text="'≈ $' + parseInt(selectedPriceClp).toLocaleString('es-CL') + ' CLP'">
-                                        ${{ number_format($product->base_price_clp, 0, ',', '.') }} CLP
+                                    <div class="text-[11px] text-[#777] font-mono" x-text="formatSecondaryPrice()">
                                     </div>
                                 </div>
 
                                 <button 
                                     type="button"
-                                    @click="addToCart(selectedVariantId)"
-                                    class="px-6 py-3 rounded-lg bg-[#d8c49d] hover:bg-[#ebd7b1] text-black font-bold text-xs uppercase tracking-widest transition-all shadow-md flex items-center gap-2"
+                                    @click="addToCart(selectedVariantId, 1, '{{ addslashes($product->title) }}')"
+                                    class="px-6 py-3 rounded-lg bg-[#d8c49d] hover:bg-[#ebd7b1] text-black font-bold text-xs uppercase tracking-widest transition-all shadow-md flex items-center gap-2 cursor-pointer hover:scale-[1.02] active:scale-95"
                                 >
                                     <span>BUY</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>

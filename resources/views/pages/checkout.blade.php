@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Finalizar Compra — FREDOSIS | Pasarela PayPal')
-@section('meta_description', 'Pago seguro con PayPal para láminas fine art y dibujos originales de Fredosis.')
+@section('title', 'Finalizar Adquisición — FREDOSIS | Colección de Autor')
+@section('meta_description', 'Adquisición segura de láminas fine art y dibujos originales de Fredo (Fredosis).')
 
 @section('content')
 <section class="py-16 md:py-24 px-6 md:px-16 max-w-5xl mx-auto space-y-12">
     <!-- Header -->
     <div class="text-center max-w-xl mx-auto space-y-2">
-        <span class="text-xs uppercase tracking-widest text-[#d8c49d] font-bold">Pasarela de Pago Segura</span>
+        <span class="text-xs uppercase tracking-widest text-[#d8c49d] font-bold">Adquisición Segura de Obras</span>
         <h1 class="text-3xl md:text-5xl font-serif font-bold text-[#f5f5f3]">Finalizar Compra</h1>
         <p class="text-xs text-[#8e8e93]">
             Transacciones cifradas y protegidas directamente a través de <strong>PayPal</strong>.

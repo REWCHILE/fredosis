@@ -114,16 +114,16 @@
                 <div class="space-y-3 pt-2">
                     <button 
                         type="button"
-                        @click="addToCart(selectedVariantId)"
-                        class="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-[#d8c49d] hover:bg-[#ebd7b1] text-black font-bold text-xs uppercase tracking-widest transition-all shadow-xl hover:scale-[1.01]"
+                        @click="addToCart(selectedVariantId, 1, '{{ addslashes($product->title) }}')"
+                        class="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-[#d8c49d] hover:bg-[#ebd7b1] text-black font-bold text-xs uppercase tracking-widest transition-all shadow-xl hover:scale-[1.01] cursor-pointer"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                         <span>Añadir al Carrito</span>
                     </button>
                     <a 
                         href="{{ route('checkout') }}"
-                        @click="addToCart(selectedVariantId)"
-                        class="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl border border-[#333] hover:border-[#d8c49d] text-white hover:text-[#d8c49d] font-semibold text-xs uppercase tracking-wider transition-all"
+                        @click="addToCart(selectedVariantId, 1, '{{ addslashes($product->title) }}')"
+                        class="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl border border-[#333] hover:border-[#d8c49d] text-white hover:text-[#d8c49d] font-semibold text-xs uppercase tracking-wider transition-all cursor-pointer"
                     >
                         Comprar Directamente con PayPal
                     </a>

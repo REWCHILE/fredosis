@@ -82,6 +82,49 @@
 
     <style>
         [x-cloak] { display: none !important; }
+
+        /* Encapsulated Google Translate: hide banner, tooltips, branding */
+        .goog-te-banner-frame.skiptranslate,
+        .goog-te-banner-frame,
+        iframe.goog-te-banner-frame {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            opacity: 0 !important;
+        }
+        body {
+            top: 0px !important;
+            position: static !important;
+        }
+        #goog-gt-tt, .goog-te-balloon-frame {
+            display: none !important;
+        }
+        .goog-text-highlight {
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+        #google_translate_element {
+            display: none !important;
+        }
+        .skiptranslate:not(.goog-te-combo) {
+            display: none !important;
+        }
+
+        /* Fredosis dark loader spin animations */
+        @keyframes fredo-orbit-cw {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes fredo-orbit-ccw {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+        .animate-fredo-cw {
+            animation: fredo-orbit-cw 3s linear infinite;
+        }
+        .animate-fredo-ccw {
+            animation: fredo-orbit-ccw 1.8s linear infinite;
+        }
     </style>
 </head>
 <body 
@@ -228,27 +271,28 @@
                     </div>
                 </a>
 
-                <!-- 4. Pasarela de Pago & Carrito -->
+                <!-- 4. Mi Carrito / Colección -->
                 <button 
                     type="button"
                     @click="cartOpen = true"
-                    class="w-full flex items-center gap-3.5 px-3.5 py-3 rounded-lg text-sm font-medium transition-all group text-[#a6a6aa] hover:bg-[#1a1a1d] hover:text-[#f2f2f0] text-left"
+                    class="w-full flex items-center gap-3.5 px-3.5 py-3 rounded-lg text-sm font-medium transition-all group text-[#a6a6aa] hover:bg-[#1a1a1d] hover:text-[#f2f2f0] text-left cursor-pointer"
                 >
                     <div class="w-7 h-7 flex items-center justify-center shrink-0 relative">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform">
-                            <rect width="20" height="14" x="2" y="5" rx="2"/>
-                            <line x1="2" y1="10" x2="22" y2="10"/>
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                            <path d="M3 6h18"/>
+                            <path d="M16 10a4 4 0 0 1-8 0"/>
                         </svg>
                         <!-- Cart count badge -->
                         <span 
                             x-show="cartCount > 0" 
                             x-text="cartCount"
-                            class="absolute -top-1 -right-1 bg-[#d8c49d] text-[#0b0b0c] text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center shadow-md"
+                            class="absolute -top-1 -right-1 bg-[#d8c49d] text-[#0b0b0c] text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center shadow-md animate-pulse"
                         ></span>
                     </div>
                     <div class="sidebar-full-label flex items-center justify-between w-full whitespace-nowrap">
-                        <span x-text="t('menu_payment')">Pasarela de Pago</span>
-                        <span class="text-[10px] text-[#8e8e93]" x-text="cartTotalFormatted"></span>
+                        <span x-text="t('menu_payment')">Mi Carrito</span>
+                        <span class="text-[10px] font-mono text-[#d8c49d]" x-text="cartTotalFormatted"></span>
                     </div>
                 </button>
 
@@ -268,47 +312,44 @@
             </nav>
         </div>
 
-        <!-- Bottom Section: Language & Currency Selectors, Admin Link -->
-        <div class="p-4 border-t border-[#232326]/60 bg-[#0f0f11] space-y-3">
-            <!-- Selectors Widget (visible in expanded sidebar) -->
-            <div class="sidebar-full-label space-y-2.5">
-                <!-- Currency Selector -->
-                <div class="flex items-center justify-between text-xs text-[#8e8e93]">
-                    <span class="flex items-center gap-1.5">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
-                        <span x-text="t('currency_label')">Divisa:</span>
-                    </span>
-                    <select 
-                        x-model="activeCurrency" 
-                        @change="setCurrency(activeCurrency)"
-                        class="bg-[#18181b] border border-[#2c2c30] rounded px-2 py-1 text-xs text-[#d8c49d] font-semibold focus:outline-none focus:border-[#d8c49d]"
-                    >
-                        <option value="CLP">CLP ($)</option>
-                        <option value="USD">USD ($)</option>
-                        <option value="EUR">EUR (€)</option>
-                        <option value="MXN">MXN ($)</option>
-                    </select>
-                </div>
-
-                <!-- Language Selector -->
-                <div class="flex items-center justify-between text-xs text-[#8e8e93]">
-                    <span class="flex items-center gap-1.5">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                        <span x-text="t('language_label')">Idioma:</span>
-                    </span>
-                    <div class="inline-flex rounded-md border border-[#2c2c30] p-0.5 bg-[#18181b]">
+        <!-- Bottom Section: Language & Currency Selectors on the EXACT SAME LINE -->
+        <div class="p-3 border-t border-[#232326]/60 bg-[#0f0f11] space-y-2">
+            <!-- Selectors in ONE SINGLE LINE as requested -->
+            <div class="sidebar-full-label">
+                <div class="flex items-center justify-between gap-1.5 p-1.5 rounded-xl bg-[#141416] border border-[#232326]">
+                    <!-- Encapsulated Language Switcher (ES / EN) -->
+                    <div class="inline-flex rounded-lg border border-[#2c2c30] p-0.5 bg-[#18181b] shrink-0 notranslate">
                         <button 
                             type="button"
                             @click="setLocale('es')"
-                            :class="activeLocale === 'es' ? 'bg-[#d8c49d] text-[#0b0b0c] font-bold' : 'text-[#8e8e93] hover:text-white'"
-                            class="px-2 py-0.5 rounded text-[11px] transition-all"
+                            :class="activeLocale === 'es' ? 'bg-[#d8c49d] text-[#0b0b0c] font-bold shadow-sm' : 'text-[#8e8e93] hover:text-white'"
+                            class="px-2 py-0.5 rounded text-[11px] font-mono font-bold transition-all cursor-pointer"
+                            title="Español (Original)"
                         >ES</button>
                         <button 
                             type="button"
                             @click="setLocale('en')"
-                            :class="activeLocale === 'en' ? 'bg-[#d8c49d] text-[#0b0b0c] font-bold' : 'text-[#8e8e93] hover:text-white'"
-                            class="px-2 py-0.5 rounded text-[11px] transition-all"
+                            :class="activeLocale === 'en' ? 'bg-[#d8c49d] text-[#0b0b0c] font-bold shadow-sm' : 'text-[#8e8e93] hover:text-white'"
+                            class="px-2 py-0.5 rounded text-[11px] font-mono font-bold transition-all cursor-pointer"
+                            title="Translate to English"
                         >EN</button>
+                    </div>
+
+                    <span class="text-[#2c2c30] text-xs">|</span>
+
+                    <!-- Currency Switcher (USD / CLP / EUR / MXN) -->
+                    <div class="flex items-center gap-1 shrink-0 notranslate">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#8e8e93]"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+                        <select 
+                            x-model="activeCurrency" 
+                            @change="setCurrency(activeCurrency)"
+                            class="bg-[#18181b] border border-[#2c2c30] rounded px-1.5 py-0.5 text-[11px] font-mono font-bold text-[#d8c49d] focus:outline-none focus:border-[#d8c49d] cursor-pointer"
+                        >
+                            <option value="USD">USD ($)</option>
+                            <option value="CLP">CLP ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="MXN">MXN ($)</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -319,7 +360,7 @@
                     <button 
                         type="button"
                         @click="setLocale(activeLocale === 'es' ? 'en' : 'es')"
-                        class="w-8 h-8 rounded border border-[#2c2c30] text-[11px] font-bold text-[#d8c49d] flex items-center justify-center hover:bg-[#1f1f23]"
+                        class="w-8 h-8 rounded border border-[#2c2c30] text-[11px] font-bold text-[#d8c49d] flex items-center justify-center hover:bg-[#1f1f23] cursor-pointer notranslate"
                         :title="'Idioma actual: ' + activeLocale.toUpperCase()"
                     >
                         <span x-text="activeLocale.toUpperCase()"></span>
@@ -328,10 +369,10 @@
                     <button 
                         type="button"
                         @click="cartOpen = true"
-                        class="w-8 h-8 rounded border border-[#2c2c30] text-[#a6a6aa] hover:text-[#d8c49d] flex items-center justify-center relative hover:bg-[#1f1f23]"
+                        class="w-8 h-8 rounded border border-[#2c2c30] text-[#a6a6aa] hover:text-[#d8c49d] flex items-center justify-center relative hover:bg-[#1f1f23] cursor-pointer"
                         title="Ver Carrito"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                         <span x-show="cartCount > 0" class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#d8c49d]"></span>
                     </button>
                 </div>
@@ -555,10 +596,13 @@
                 cartCount: 0,
                 cartTotal: 0,
                 cartTotalFormatted: '$0',
-                activeCurrency: '{{ session("currency", "USD") }}',
-                activeLocale: '{{ session("locale", "es") }}',
+                activeCurrency: localStorage.getItem('fredosis_currency') || '{{ session("currency", "USD") }}',
+                activeLocale: document.cookie.includes('googtrans=/es/en') ? 'en' : (localStorage.getItem('fredosis_locale') || '{{ session("locale", "es") }}'),
                 lightboxOpen: false,
                 lightboxItem: {},
+                isAddingToCart: false,
+                addingItemTitle: '',
+                addingItemSuccess: false,
 
                 // Translation dictionary (ES / EN)
                 i18n: {
@@ -566,7 +610,7 @@
                         menu_portfolio: 'Portafolio',
                         menu_shop: 'Dibujos & Láminas',
                         menu_booking: 'Agenda Tatuajes',
-                        menu_payment: 'Pasarela de Pago',
+                        menu_payment: 'Mi Carrito',
                         menu_notifications: 'Notificaciones & Contacto',
                         currency_label: 'Divisa',
                         language_label: 'Idioma',
@@ -574,13 +618,13 @@
                         cart_empty: 'Tu carrito está vacío',
                         cart_empty_sub: 'Descubre dibujos originales y láminas fine art en la tienda.',
                         subtotal: 'Subtotal',
-                        checkout_paypal: 'Pagar con PayPal',
+                        checkout_paypal: 'Finalizar Adquisición',
                     },
                     en: {
                         menu_portfolio: 'Portfolio',
                         menu_shop: 'Drawings & Prints',
                         menu_booking: 'Tattoo Booking',
-                        menu_payment: 'Payment Gateway',
+                        menu_payment: 'My Cart',
                         menu_notifications: 'Notifications & Contact',
                         currency_label: 'Currency',
                         language_label: 'Language',
@@ -588,7 +632,7 @@
                         cart_empty: 'Your cart is empty',
                         cart_empty_sub: 'Explore original drawings and archival fine art prints in the shop.',
                         subtotal: 'Subtotal',
-                        checkout_paypal: 'Pay with PayPal',
+                        checkout_paypal: 'Proceed to Checkout',
                     }
                 },
 
@@ -612,6 +656,9 @@
 
                 setLocale(locale) {
                     this.activeLocale = locale;
+                    localStorage.setItem('fredosis_locale', locale);
+
+                    // Persist session in Laravel
                     fetch('{{ route("api.set-locale") }}', {
                         method: 'POST',
                         headers: {
@@ -620,10 +667,38 @@
                         },
                         body: JSON.stringify({ locale })
                     });
+
+                    // Set Encapsulated Google Translate Cookies (100% Free & Automated)
+                    const host = window.location.hostname;
+                    if (locale === 'en') {
+                        document.cookie = "googtrans=/es/en; path=/;";
+                        document.cookie = "googtrans=/es/en; path=/; domain=" + host + ";";
+                        if (host.includes('.')) {
+                            document.cookie = "googtrans=/es/en; path=/; domain=." + host + ";";
+                        }
+                    } else {
+                        document.cookie = "googtrans=/es/es; path=/;";
+                        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + host + ";";
+                        if (host.includes('.')) {
+                            document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + host + ";";
+                        }
+                    }
+
+                    // Trigger Google Translate engine combo or reload
+                    const combo = document.querySelector('.goog-te-combo');
+                    if (combo) {
+                        combo.value = locale;
+                        combo.dispatchEvent(new Event('change'));
+                    } else {
+                        window.location.reload();
+                    }
                 },
 
                 setCurrency(curr) {
                     this.activeCurrency = curr;
+                    localStorage.setItem('fredosis_currency', curr);
+
                     fetch('{{ route("api.set-currency") }}', {
                         method: 'POST',
                         headers: {
@@ -633,7 +708,6 @@
                         body: JSON.stringify({ currency: curr })
                     }).then(() => {
                         this.fetchCart();
-                        // Optional page reload or dispatch event
                         window.dispatchEvent(new CustomEvent('currency-changed', { detail: { currency: curr } }));
                     });
                 },
@@ -649,7 +723,13 @@
                         });
                 },
 
-                addToCart(variantId, quantity = 1) {
+                addToCart(variantId, quantity = 1, artworkTitle = '') {
+                    this.isAddingToCart = true;
+                    this.addingItemTitle = artworkTitle || 'Obra Original © FREDO';
+                    this.addingItemSuccess = false;
+
+                    const startTime = Date.now();
+
                     fetch('{{ route("api.cart.add") }}', {
                         method: 'POST',
                         headers: {
@@ -664,7 +744,23 @@
                         this.cartCount = data.count;
                         this.cartTotal = data.total;
                         this.cartTotalFormatted = data.total_formatted;
-                        this.cartOpen = true;
+
+                        // Ensure dark surrealist animation displays for at least 750ms for visual delight
+                        const elapsed = Date.now() - startTime;
+                        const waitTime = Math.max(0, 750 - elapsed);
+
+                        setTimeout(() => {
+                            this.addingItemSuccess = true;
+                            setTimeout(() => {
+                                this.isAddingToCart = false;
+                                this.addingItemSuccess = false;
+                                this.cartOpen = true;
+                            }, 650);
+                        }, waitTime);
+                    })
+                    .catch(() => {
+                        this.isAddingToCart = false;
+                        this.addingItemSuccess = false;
                     });
                 },
 
@@ -706,6 +802,102 @@
             }
         }
     </script>
+
+    <!-- Fredosis Art Acquisition Loader Overlay ("Animación estilo Fredosis") -->
+    <div 
+        x-show="isAddingToCart"
+        x-cloak
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 scale-95"
+        x-transition:enter-end="opacity-100 scale-100"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-95"
+        class="fixed inset-0 z-[120] flex items-center justify-center bg-black/85 backdrop-blur-md p-4"
+        style="display: none;"
+    >
+        <div class="relative bg-[#0d0d0f] border border-[#d8c49d]/30 rounded-3xl p-8 max-w-sm w-full text-center shadow-[0_0_50px_rgba(216,196,157,0.18)] overflow-hidden">
+            <!-- Subtle Gold/Graphite Background Glows -->
+            <div class="absolute -top-24 -left-24 w-48 h-48 bg-[#d8c49d]/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-[#c5a059]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Hypnotic Fredosis Icon / Spinner -->
+            <div class="relative w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                <!-- Outer spinning dashed graphite ring -->
+                <div 
+                    class="absolute inset-0 rounded-full border-2 border-dashed border-[#d8c49d]/40"
+                    :class="addingItemSuccess ? 'border-[#d8c49d]' : 'animate-fredo-cw'"
+                ></div>
+                <!-- Inner counter-spinning glowing gold ring -->
+                <div 
+                    class="absolute inset-2 rounded-full border border-t-[#d8c49d] border-r-transparent border-b-[#c5a059] border-l-transparent"
+                    :class="addingItemSuccess ? 'border-[#d8c49d]' : 'animate-fredo-ccw'"
+                ></div>
+
+                <!-- Central Motif: Fredo Surrealist Third Eye / Portal -> Checkmark morph -->
+                <div class="relative z-10 w-12 h-12 rounded-full bg-[#161619] border border-[#d8c49d]/50 flex items-center justify-center shadow-inner">
+                    <!-- Eye / Portal Icon while adding -->
+                    <template x-if="!addingItemSuccess">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="text-[#d8c49d] animate-pulse">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                            <circle cx="12" cy="12" r="3" fill="#d8c49d" fill-opacity="0.3"/>
+                        </svg>
+                    </template>
+                    <!-- Checkmark on success -->
+                    <template x-if="addingItemSuccess">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-[#d8c49d] scale-110 transition-transform">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Typography & Status Messages -->
+            <div class="space-y-2">
+                <template x-if="!addingItemSuccess">
+                    <div>
+                        <h4 class="font-serif text-lg font-bold text-[#f5f5f3] tracking-wider uppercase">
+                            Añadiendo a tu Colección
+                        </h4>
+                        <p class="text-xs text-[#d8c49d] font-mono mt-1 font-semibold" x-text="addingItemTitle"></p>
+                        <p class="text-[11px] text-[#71717a] mt-2">Registrando pieza en tu carrito...</p>
+                    </div>
+                </template>
+
+                <template x-if="addingItemSuccess">
+                    <div class="space-y-1">
+                        <h4 class="font-serif text-lg font-bold text-[#d8c49d] tracking-wider uppercase">
+                            ¡Obra Asegurada!
+                        </h4>
+                        <p class="text-xs text-[#ededeb] font-mono font-semibold" x-text="addingItemTitle"></p>
+                        <p class="text-[11px] text-[#a1a1aa] mt-1">Abriendo tu carrito de obras...</p>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Graphite progress indicator bar -->
+            <div class="mt-6 w-full bg-[#1c1c20] h-1 rounded-full overflow-hidden">
+                <div 
+                    class="h-full bg-gradient-to-r from-[#8e8e93] via-[#d8c49d] to-[#c5a059] transition-all duration-700"
+                    :style="addingItemSuccess ? 'width: 100%' : 'width: 70%'"
+                ></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Encapsulated Google Translate Engine (Free, Hidden & Automated) -->
+    <div id="google_translate_element" class="hidden" style="display:none !important;"></div>
+    <script type="text/javascript">
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'es,en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        };
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     @stack('scripts')
 </body>
