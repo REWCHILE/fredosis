@@ -47,4 +47,14 @@ class HomeController extends Controller
     {
         return view('pages.press');
     }
+
+    public function aftercare()
+    {
+        return view('pages.aftercare');
+    }
+
+    public function firstTattoo()
+    {
+        return view('pages.first-tattoo');
+    }
 }

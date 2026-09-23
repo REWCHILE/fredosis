@@ -69,8 +69,8 @@
          HERO SECTION: FINE ART SHOWCASE (ESTILO MILES JOHNSTON)
          ======================================================== -->
     <section class="relative min-h-[90vh] flex items-center justify-center px-6 md:px-16 overflow-hidden border-b border-[#232326]">
-        <!-- Subtle Ambient Background Light -->
-        <div class="absolute inset-0 bg-gradient-to-b from-[#141417]/40 via-[#0b0b0c] to-[#0b0b0c] pointer-events-none"></div>
+        <!-- Subtle Ambient Background Light (translucent so particle canvas shines through) -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#141417]/30 via-transparent to-[#0b0b0c]/70 pointer-events-none"></div>
 
         <div class="relative z-10 max-w-5xl mx-auto text-center space-y-8 py-20">
             <!-- Subtitle / Artist discipline badge -->
@@ -613,12 +613,14 @@
             </div>
 
             <div class="space-y-3">
-                <span class="text-xs uppercase tracking-widest text-[#d8c49d] font-bold">Navegación</span>
+                <span class="text-xs uppercase tracking-widest text-[#d8c49d] font-bold">Navegación & Guías</span>
                 <ul class="space-y-2 text-xs text-[#8e8e93]">
                     <li><a href="{{ route('portfolio') }}" class="hover:text-white transition-colors">Portafolio de Obras (45 Obras)</a></li>
                     <li><a href="{{ route('shop') }}" class="hover:text-white transition-colors">Tienda — Original Drawings for Sale</a></li>
                     <li><a href="{{ route('flash.index') }}" class="hover:text-white transition-colors">Flashes de Tatuaje Disponibles</a></li>
-                    <li><a href="{{ route('press') }}" class="hover:text-white transition-colors">Prensa Mundial & Reconocimientos</a></li>
+                    <li><a href="{{ route('aftercare') }}" class="hover:text-[#d8c49d] text-white transition-colors font-medium">Guía: Cuidados Post Tatuaje</a></li>
+                    <li><a href="{{ route('first-tattoo') }}" class="hover:text-[#d8c49d] text-white transition-colors font-medium">Guía: Tu Primer Tatuaje</a></li>
+                    <li><a href="{{ route('press') }}" class="hover:text-white transition-colors">Prensa Mundial & Bio</a></li>
                     <li><a href="{{ route('booking') }}" class="hover:text-white transition-colors">Agenda de Tatuajes</a></li>
                     <li><a href="{{ route('admin.login') }}" class="hover:text-white transition-colors">Acceso de Administración</a></li>
                 </ul>

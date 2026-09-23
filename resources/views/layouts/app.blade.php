@@ -131,8 +131,11 @@
     x-data="fredosisApp()" 
     x-init="initApp()" 
     :class="{ 'sidebar-is-pinned': isPinned }"
-    class="min-h-full flex flex-col bg-[#0b0b0c] text-[#ededeb] selection:bg-[#d8c49d] selection:text-[#0b0b0c]"
+    class="min-h-full flex flex-col bg-[#0b0b0c] text-[#ededeb] selection:bg-[#d8c49d] selection:text-[#0b0b0c] relative"
 >
+
+    <!-- Interactive Dark Surrealism Particle Canvas (Fredosis Graphite & Gold Dust) -->
+    <canvas id="fredosis-particle-canvas" class="fixed inset-0 pointer-events-none z-0 w-full h-full opacity-85"></canvas>
 
     <!-- ========================================================
          1. LEFT COLLAPSIBLE / PINNABLE SIDEBAR NAVIGATION
@@ -432,7 +435,7 @@
     <!-- ========================================================
          3. MAIN CONTENT CONTAINER
          ======================================================== -->
-    <main id="main-content" class="flex-1 transition-all pt-16 md:pt-0">
+    <main id="main-content" class="relative z-10 flex-1 transition-all pt-16 md:pt-0">
         @yield('content')
     </main>
 
@@ -898,6 +901,188 @@
         };
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Fredosis Interactive Graphite & Gold Particle Canvas Engine -->
+    <script>
+        (function initFredosisParticles() {
+            const canvas = document.getElementById('fredosis-particle-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            const mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000, active: false };
+
+            function resize() {
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                ctx.scale(dpr, dpr);
+                initParticles();
+            }
+
+            class Particle {
+                constructor() {
+                    this.reset(true);
+                }
+
+                reset(initial = false) {
+                    this.x = Math.random() * width;
+                    this.y = initial ? Math.random() * height : (Math.random() > 0.5 ? -15 : height + 15);
+                    this.vx = (Math.random() - 0.5) * 0.35;
+                    this.vy = (Math.random() - 0.5) * 0.35 - 0.18; // Hypnotic slow upward float
+                    this.baseRadius = Math.random() * 2.0 + 1.0;
+                    this.radius = this.baseRadius;
+                    this.isGold = Math.random() < 0.38; // 38% Champagne Gold, 62% Graphite
+                    this.baseAlpha = this.isGold ? (Math.random() * 0.40 + 0.40) : (Math.random() * 0.28 + 0.20);
+                    this.alpha = this.baseAlpha;
+                    this.pulseSpeed = Math.random() * 0.02 + 0.009;
+                    this.pulseOffset = Math.random() * Math.PI * 2;
+                    this.mouseProximity = 0;
+                }
+
+                update(time) {
+                    this.alpha = this.baseAlpha + Math.sin(time * this.pulseSpeed + this.pulseOffset) * 0.15;
+                    this.mouseProximity = 0;
+
+                    // Mouse gravitational repulsion & illumination
+                    if (mouse.active) {
+                        const dx = mouse.x - this.x;
+                        const dy = mouse.y - this.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        const maxDist = 160;
+
+                        if (dist < maxDist && dist > 0) {
+                            const force = (1 - dist / maxDist) * 3.2;
+                            const angle = Math.atan2(dy, dx);
+                            this.x -= Math.cos(angle) * force;
+                            this.y -= Math.sin(angle) * force;
+                            this.mouseProximity = 1 - (dist / maxDist);
+                            this.alpha = Math.min(1.0, this.alpha + this.mouseProximity * 0.5);
+                        }
+                    }
+
+                    // Sine wave gentle horizontal waver
+                    this.x += this.vx + Math.sin(time * 0.0012 + this.pulseOffset) * 0.12;
+                    this.y += this.vy;
+
+                    // Wrap-around edges
+                    if (this.x < -25) this.x = width + 25;
+                    if (this.x > width + 25) this.x = -25;
+                    if (this.y < -25) this.y = height + 25;
+                    if (this.y > height + 25) this.y = -25;
+                }
+
+                draw() {
+                    const currentRadius = this.baseRadius + (this.mouseProximity * 0.8);
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, currentRadius, 0, Math.PI * 2);
+                    if (this.isGold) {
+                        ctx.fillStyle = `rgba(216, 196, 157, ${Math.max(0, this.alpha)})`;
+                        ctx.shadowColor = 'rgba(216, 196, 157, 0.7)';
+                        ctx.shadowBlur = 6;
+                    } else {
+                        ctx.fillStyle = `rgba(166, 166, 170, ${Math.max(0, this.alpha)})`;
+                        ctx.shadowColor = 'rgba(255, 255, 255, 0.15)';
+                        ctx.shadowBlur = 2;
+                    }
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            }
+
+            function initParticles() {
+                const count = Math.min(Math.floor((width * height) / 10000), 95);
+                particles = [];
+                for (let i = 0; i < count; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            window.addEventListener('resize', resize);
+            window.addEventListener('mousemove', e => {
+                mouse.targetX = e.clientX;
+                mouse.targetY = e.clientY;
+                mouse.active = true;
+            });
+            window.addEventListener('mouseleave', () => {
+                mouse.active = false;
+            });
+            window.addEventListener('touchmove', e => {
+                if (e.touches && e.touches[0]) {
+                    mouse.targetX = e.touches[0].clientX;
+                    mouse.targetY = e.touches[0].clientY;
+                    mouse.active = true;
+                }
+            }, { passive: true });
+
+            function animate(time) {
+                // Smooth mouse interpolation
+                mouse.x += (mouse.targetX - mouse.x) * 0.15;
+                mouse.y += (mouse.targetY - mouse.y) * 0.15;
+
+                ctx.clearRect(0, 0, width, height);
+
+                // Hypnotic champagne gold aura following cursor
+                if (mouse.active && mouse.x > 0 && mouse.y > 0) {
+                    const glow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 200);
+                    glow.addColorStop(0, 'rgba(216, 196, 157, 0.08)');
+                    glow.addColorStop(0.5, 'rgba(216, 196, 157, 0.025)');
+                    glow.addColorStop(1, 'rgba(216, 196, 157, 0)');
+                    ctx.fillStyle = glow;
+                    ctx.fillRect(mouse.x - 200, mouse.y - 200, 400, 400);
+                }
+
+                // Fine-line constellation filaments between nearby particles
+                const maxDist = 115;
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < maxDist) {
+                            const lineAlpha = (1 - dist / maxDist) * 0.28;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(216, 196, 157, ${lineAlpha})`;
+                            ctx.lineWidth = 0.75;
+                            ctx.stroke();
+                        }
+                    }
+
+                    // Luminous interactive filament to cursor
+                    if (mouse.active) {
+                        const dx = mouse.x - particles[i].x;
+                        const dy = mouse.y - particles[i].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 150) {
+                            const lineAlpha = (1 - dist / 150) * 0.45;
+                            ctx.beginPath();
+                            ctx.moveTo(mouse.x, mouse.y);
+                            ctx.lineTo(particles[i].x, particles[i].y);
+                            ctx.strokeStyle = `rgba(216, 196, 157, ${lineAlpha})`;
+                            ctx.lineWidth = 1.0;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                // Update & draw particles
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update(time);
+                    particles[i].draw();
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            resize();
+            requestAnimationFrame(animate);
+        })();
+    </script>
 
     @stack('scripts')
 </body>

@@ -34,6 +34,11 @@ Route::get('/tienda/{slug}', [ShopController::class, 'show'])->name('shop.detail
 Route::get('/prensa', [HomeController::class, 'press'])->name('press');
 Route::get('/press', [HomeController::class, 'press'])->name('press.en');
 
+// High-Intent SEO Content Pages (Keywords: cuidados post tatuaje, crema cicatrizante, primer tatuaje)
+Route::get('/cuidados-tatuaje', [HomeController::class, 'aftercare'])->name('aftercare');
+Route::get('/cuidados', [HomeController::class, 'aftercare'])->name('aftercare.alias');
+Route::get('/primer-tatuaje', [HomeController::class, 'firstTattoo'])->name('first-tattoo');
+
 // Flash Tattoos (Diseños Disponibles)
 Route::get('/flash', [FlashController::class, 'index'])->name('flash.index');
 Route::get('/disenos-disponibles', [FlashController::class, 'index'])->name('flash.alias');
@@ -55,6 +60,9 @@ Route::get('/sitemap.xml', function () {
         ['url' => url('/tienda'), 'priority' => '0.9', 'freq' => 'daily'],
         ['url' => url('/flash'), 'priority' => '0.9', 'freq' => 'daily'],
         ['url' => url('/agenda'), 'priority' => '0.9', 'freq' => 'daily'],
+        ['url' => url('/prensa'), 'priority' => '0.8', 'freq' => 'monthly'],
+        ['url' => url('/cuidados-tatuaje'), 'priority' => '0.9', 'freq' => 'weekly'],
+        ['url' => url('/primer-tatuaje'), 'priority' => '0.8', 'freq' => 'weekly'],
         ['url' => url('/checkout'), 'priority' => '0.6', 'freq' => 'monthly'],
     ];
 

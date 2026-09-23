@@ -22,6 +22,8 @@
 - [Tienda — Original Drawings for Sale](http://127.0.0.1:8000/tienda): 24 dibujos y óleos originales a la venta con técnicas, dimensiones, año y certificado de autenticidad © FREDO.
 - [Flashes Disponibles](http://127.0.0.1:8000/flash): Diseños exclusivos únicos listos para tatuar (se realizan una sola vez).
 - [Prensa & Reconocimiento Global](http://127.0.0.1:8000/prensa): Artículos y reseñas de The Sun, Daily Mail, Ripley's Believe It or Not! y documental The Holy Gift.
+- [Guía de Cuidados Post Tatuaje](http://127.0.0.1:8000/cuidados-tatuaje): Protocolo clínico y artístico día a día (días 1 al 14), cremas cicatrizantes recomendadas en Chile (Bepanthol Tattoo, Eucerin Aquaphor, CeraVe) y prevención de infecciones.
+- [Guía para tu Primer Tatuaje](http://127.0.0.1:8000/primer-tatuaje): Mapa de dolor por zonas del cuerpo, preparación 24 horas antes y proceso de diseño anatómico sin clichés.
 - [Agenda de Tatuajes](http://127.0.0.1:8000/agenda): Sistema de reserva con calendario en tiempo real y abono de $35.000 CLP / $35 USD deducible.
 
 ## Obras Originales & Envíos
