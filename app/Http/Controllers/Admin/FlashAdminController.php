@@ -7,7 +7,6 @@ use App\Models\FlashTattoo;
 use App\Models\TattooStyle;
 use App\Services\CurrencyService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class FlashAdminController extends Controller
@@ -25,6 +24,7 @@ class FlashAdminController extends Controller
     public function create()
     {
         $styles = TattooStyle::all();
+
         return view('admin.flash.form', ['flash' => null, 'styles' => $styles]);
     }
 
@@ -49,17 +49,17 @@ class FlashAdminController extends Controller
         // Process image upload or URL
         if ($request->hasFile('image_file')) {
             $path = $request->file('image_file')->store('flashes', 'public');
-            $validated['image_url'] = '/storage/' . $path;
+            $validated['image_url'] = '/storage/'.$path;
         } elseif (empty($validated['image_url'])) {
             return back()->withErrors(['image_file' => 'Debes subir un archivo de imagen o ingresar una URL de imagen.'])->withInput();
         }
 
         // Auto-compute price_usd if missing
-        if (empty($validated['price_usd']) && !empty($validated['price_clp'])) {
-            $validated['price_usd'] = CurrencyService::convert((float)$validated['price_clp'], 'CLP', 'USD');
+        if (empty($validated['price_usd']) && ! empty($validated['price_clp'])) {
+            $validated['price_usd'] = CurrencyService::convert((float) $validated['price_clp'], 'CLP', 'USD');
         }
 
-        $validated['slug'] = Str::slug($validated['title']) . '-' . rand(100, 999);
+        $validated['slug'] = Str::slug($validated['title']).'-'.rand(100, 999);
         $validated['is_claimed'] = $request->has('is_claimed');
         $validated['is_active'] = $request->has('is_active');
         $validated['sort_order'] = $validated['sort_order'] ?? 0;
@@ -73,6 +73,7 @@ class FlashAdminController extends Controller
     {
         $flash = FlashTattoo::findOrFail($id);
         $styles = TattooStyle::all();
+
         return view('admin.flash.form', compact('flash', 'styles'));
     }
 
@@ -99,13 +100,13 @@ class FlashAdminController extends Controller
         // Process image upload
         if ($request->hasFile('image_file')) {
             $path = $request->file('image_file')->store('flashes', 'public');
-            $validated['image_url'] = '/storage/' . $path;
+            $validated['image_url'] = '/storage/'.$path;
         } elseif (empty($validated['image_url'])) {
             $validated['image_url'] = $flash->image_url;
         }
 
-        if (empty($validated['price_usd']) && !empty($validated['price_clp'])) {
-            $validated['price_usd'] = CurrencyService::convert((float)$validated['price_clp'], 'CLP', 'USD');
+        if (empty($validated['price_usd']) && ! empty($validated['price_clp'])) {
+            $validated['price_usd'] = CurrencyService::convert((float) $validated['price_clp'], 'CLP', 'USD');
         }
 
         $validated['is_claimed'] = $request->has('is_claimed');
@@ -120,13 +121,14 @@ class FlashAdminController extends Controller
     public function toggleClaim($id)
     {
         $flash = FlashTattoo::findOrFail($id);
-        $flash->is_claimed = !$flash->is_claimed;
-        if (!$flash->is_claimed) {
+        $flash->is_claimed = ! $flash->is_claimed;
+        if (! $flash->is_claimed) {
             $flash->claimed_by_name = null;
         }
         $flash->save();
 
         $statusMsg = $flash->is_claimed ? 'marcado como RECLAMADO / TATUADO' : 'marcado como DISPONIBLE';
+
         return redirect()->back()->with('success', "Diseño '{$flash->title}' {$statusMsg}.");
     }
 

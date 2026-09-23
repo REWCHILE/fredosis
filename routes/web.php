@@ -31,6 +31,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/portafolio', [PortfolioController::class, 'index'])->name('portfolio');
 Route::get('/tienda', [ShopController::class, 'index'])->name('shop');
 Route::get('/tienda/{slug}', [ShopController::class, 'show'])->name('shop.detail');
+Route::get('/prensa', [HomeController::class, 'press'])->name('press');
+Route::get('/press', [HomeController::class, 'press'])->name('press.en');
 
 // Flash Tattoos (Diseños Disponibles)
 Route::get('/flash', [FlashController::class, 'index'])->name('flash.index');

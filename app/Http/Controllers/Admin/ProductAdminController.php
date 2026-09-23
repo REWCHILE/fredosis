@@ -13,6 +13,7 @@ class ProductAdminController extends Controller
     public function index()
     {
         $products = Product::with('variants')->orderBy('id', 'desc')->get();
+
         return view('admin.products.index', compact('products'));
     }
 
@@ -39,7 +40,7 @@ class ProductAdminController extends Controller
             'is_active' => 'nullable|boolean',
         ]);
 
-        $validated['slug'] = Str::slug($validated['title']) . '-' . rand(100, 999);
+        $validated['slug'] = Str::slug($validated['title']).'-'.rand(100, 999);
         $validated['has_original'] = $request->has('has_original');
         $validated['original_sold'] = $request->has('original_sold');
         $validated['is_featured'] = $request->has('is_featured');
@@ -58,7 +59,7 @@ class ProductAdminController extends Controller
                 'price_eur' => round($product->base_price_usd * 0.92, 2),
                 'price_mxn' => round($product->base_price_usd * 19.8, 2),
                 'stock' => $product->original_sold ? 0 : 1,
-                'is_available' => !$product->original_sold,
+                'is_available' => ! $product->original_sold,
             ]);
         }
 
@@ -81,6 +82,7 @@ class ProductAdminController extends Controller
     public function edit($id)
     {
         $product = Product::with('variants')->findOrFail($id);
+
         return view('admin.products.form', compact('product'));
     }
 

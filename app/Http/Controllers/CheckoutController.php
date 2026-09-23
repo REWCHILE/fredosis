@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\ProductVariant;
 use App\Models\SiteSetting;
-use App\Services\CurrencyService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -53,7 +52,9 @@ class CheckoutController extends Controller
 
         foreach ($cart as $item) {
             $variant = ProductVariant::with('product')->find($item['variant_id']);
-            if (!$variant) continue;
+            if (! $variant) {
+                continue;
+            }
 
             $price = $variant->getPriceForCurrency($paypalCurrency);
             $subtotal = $price * $item['quantity'];
@@ -71,7 +72,7 @@ class CheckoutController extends Controller
         }
 
         // Create Order Record in DB
-        $orderNumber = 'FRD-' . strtoupper(Str::random(6)) . '-' . rand(100, 999);
+        $orderNumber = 'FRD-'.strtoupper(Str::random(6)).'-'.rand(100, 999);
 
         $order = DB::transaction(function () use ($validated, $orderNumber, $paypalCurrency, $total, $itemsData) {
             $order = Order::create([

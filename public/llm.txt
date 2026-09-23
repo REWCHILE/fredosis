@@ -1,32 +1,30 @@
-# FREDOSIS — Fine Art & Tattoo Atelier
+# FREDOSIS — Wladimir Inostroza ("Fredo") | Fine Art & Tattoo Atelier
 
-> Atelier de bellas artes, dibujos a grafito inspirados en la estética de Miles Johnston y estudio privado de tatuajes de autor en Santiago Centro (a pasos de Metro Santa Ana), Chile.
+> Atelier de bellas artes, dibujo 3D anamórfico, pinturas surrealistas al óleo y estudio privado de tatuajes de autor en Santiago Centro (Metro Santa Ana), Chile.
 
-## Información General y Localización
-- Artista: Fredosis (Atelier de Bellas Artes y Tatuaje Contemporáneo)
-- Ubicación: Santiago Centro, Región Metropolitana, Chile (Metro Santa Ana, combinación Línea 2 y Línea 5)
-- Especialidad artística: Dibujo a grafito surrealista, fine art prints giclée en papel algodón Hahnemühle, tatuaje línea fina (fine line), blackwork de alto contraste y cover-up.
-- Métodos de pago: PayPal oficial (USD, EUR, MXN, CLP), transferencia bancaria, tarjetas de débito/crédito.
-- Horario de atención: Martes a Sábado, 11:00 a 20:00 hrs (Atención privada exclusivamente con cita previa).
-- Teléfono / WhatsApp: +56 9 7200 4512
-- Correo: contacto@fredosis.art
-- Web oficial: http://127.0.0.1:8000 (o https://fredosis.art)
+## Información General y Trayectoria
+- Artista: Wladimir Inostroza ("Fredo" / "Fredosis")
+- Reconocimientos Internacionales:
+  * The Sun (Reino Unido): "Artist's amazing 3D images" por Alison Maloney.
+  * Daily Mail (Reino Unido): "The incredible 3D images that pop off the page... created with just a pencil and paper" por Lee Moran.
+  * Ripley's Believe It or Not! (Libro Oficial Mundial): "Deep Drawings", Inside Strikingly True, Página 221.
+  * TVN (Televisión Nacional de Chile): Reportaje central "Fredo Art, el joven prodigio del arte 3D".
+  * The Holy Gift (Documental Oficial sobre la banda Tool): Artista visual participante.
+- Ubicación del Estudio: Santiago Centro, Región Metropolitana, Chile (a pasos de Metro Santa Ana, Líneas 2 y 5).
+- Contacto Oficial: fredocontacto@gmail.com
+- Instagram: @fredosis.art
+- Medios de pago: PayPal internacional (USD, EUR, MXN, CLP), Webpay y transferencia bancaria directa (Chile).
+- Horario: Martes a Sábado, 11:00 a 20:00 hrs (Atención privada con cita previa).
 
-## Secciones Principales
-- [Inicio](http://127.0.0.1:8000/): Presentación visual, galería de arte, catálogo de tienda, información de estudio en Metro Santa Ana y preguntas frecuentes.
-- [Portafolio](http://127.0.0.1:8000/portafolio): Archivo de obras originales, dibujos anatómicos, botánicos y piezas de tatuaje.
-- [Diseños Flash Disponibles](http://127.0.0.1:8000/flash): Catálogo exclusivo de flashes únicos listos para tatuar (se tatúan 1 sola vez) con reserva directa en agenda.
-- [Tienda de Láminas & Dibujos](http://127.0.0.1:8000/tienda): Catálogo e-commerce de dibujos originales y láminas fine art giclée con carrito de compras y pasarela PayPal.
-- [Agenda de Tatuajes](http://127.0.0.1:8000/agenda): Sistema de reserva online con calendario en tiempo real, selección de estilo y pago de anticipo deducible ($35.000 CLP / $35 USD).
-- [Preguntas Frecuentes](http://127.0.0.1:8000/#faq-seo): Preguntas frecuentes sobre precios de tatuajes, estilos, cover-ups, ubicación y envíos.
+## Secciones de la Plataforma
+- [Inicio](http://127.0.0.1:8000/): Portada visual, destacados de galería, catálogo de tienda, información del atelier y preguntas frecuentes.
+- [Portafolio Artístico (45 Obras)](http://127.0.0.1:8000/portafolio): Galería completa de 45 obras de alta definición (Anamorfosis 3D, Curiosity, Dualism, Sentao de Pana, DMT, Mirror, El Creador, Polillas, Las Cuerdas de la Ignorancia, etc.).
+- [Tienda — Original Drawings for Sale](http://127.0.0.1:8000/tienda): 24 dibujos y óleos originales a la venta con técnicas, dimensiones, año y certificado de autenticidad © FREDO.
+- [Flashes Disponibles](http://127.0.0.1:8000/flash): Diseños exclusivos únicos listos para tatuar (se realizan una sola vez).
+- [Prensa & Reconocimiento Global](http://127.0.0.1:8000/prensa): Artículos y reseñas de The Sun, Daily Mail, Ripley's Believe It or Not! y documental The Holy Gift.
+- [Agenda de Tatuajes](http://127.0.0.1:8000/agenda): Sistema de reserva con calendario en tiempo real y abono de $35.000 CLP / $35 USD deducible.
 
-## Servicios & Precios
-- Tatuajes personalizados de autor: Desde $50.000 CLP. Reserva de $35.000 CLP ($35 USD) deducible del valor final.
-- Estilos de tatuaje: Línea fina (fine line), Blackwork, Surrealismo anatómico, Botánica, Cover-up.
-- Láminas Fine Art Giclée: Impresas en papel Hahnemühle Photo Rag 308g 100% algodón, formatos A4 ($35 USD / $33.250 CLP), A3 ($60 USD / $57.000 CLP), A2 ($95 USD / $90.250 CLP).
-- Obras originales en grafito: Piezas únicas firmadas y con certificado de autenticidad.
-- Envíos: Nacionales e internacionales en tubos reforzados con código de seguimiento.
-
-## Archivos para Modelos de Lenguaje
-- [Contexto Completo (fullllm.txt)](http://127.0.0.1:8000/fullllm.txt): Documentación exhaustiva sobre obras, catálogo, ficha técnica de curación, políticas de agenda y directrices de cotización.
-- [Versión Alternativa (llms.txt)](http://127.0.0.1:8000/llms.txt): Alias estándar de este archivo.
+## Obras Originales & Envíos
+- Envíos Internacionales: Servicio certificado mediante Correos de Chile (aprox. 30 días hábiles con seguimiento online).
+- Embalaje: Tubo o caja rígida de alta protección con bolsa impermeable de conservación.
+- Compras en Chile: Coordinación directa vía Webpay o email a fredocontacto@gmail.com.

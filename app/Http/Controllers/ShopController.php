@@ -41,14 +41,15 @@ class ShopController extends Controller
     {
         $cart = session()->get('cart', []);
         $currency = $request->query('currency', session()->get('currency', 'USD'));
-        
+
         $items = [];
         $total = 0.0;
 
         foreach ($cart as $key => $item) {
             $variant = ProductVariant::with('product')->find($item['variant_id']);
-            if (!$variant) {
+            if (! $variant) {
                 unset($cart[$key]);
+
                 continue;
             }
 
@@ -94,7 +95,7 @@ class ShopController extends Controller
         $quantity = (int) $request->input('quantity', 1);
 
         $cart = session()->get('cart', []);
-        $key = 'v_' . $variant->id;
+        $key = 'v_'.$variant->id;
 
         if (isset($cart[$key])) {
             $cart[$key]['quantity'] += $quantity;
@@ -144,6 +145,7 @@ class ShopController extends Controller
     public function clearCart(Request $request)
     {
         session()->forget('cart');
+
         return $this->getCart($request);
     }
 }

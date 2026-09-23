@@ -7,12 +7,12 @@ use App\Models\Appointment;
 use App\Models\AvailabilityRule;
 use App\Models\BookingRequest;
 use App\Models\Client;
+use App\Models\FlashTattoo;
 use App\Models\PortfolioItem;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use App\Models\SiteSetting;
 use App\Models\TattooStyle;
-use App\Models\TimeBlock;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -533,7 +533,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($flashes as $f) {
-            \App\Models\FlashTattoo::updateOrCreate(
+            FlashTattoo::updateOrCreate(
                 ['slug' => $f['slug']],
                 $f
             );

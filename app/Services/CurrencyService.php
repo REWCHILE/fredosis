@@ -22,6 +22,7 @@ class CurrencyService
                 return array_merge(self::$rates, $decoded);
             }
         }
+
         return self::$rates;
     }
 
@@ -36,6 +37,7 @@ class CurrencyService
 
         // Convert to USD first then to target
         $inUsd = $amount / $fromRate;
+
         return round($inUsd * $toRate, 2);
     }
 
@@ -44,10 +46,10 @@ class CurrencyService
         $currency = strtoupper($currency);
 
         return match ($currency) {
-            'CLP' => '$' . number_format($amount, 0, ',', '.') . ' CLP',
-            'EUR' => '€' . number_format($amount, 2, ',', '.') . ' EUR',
-            'MXN' => '$' . number_format($amount, 2, '.', ',') . ' MXN',
-            default => '$' . number_format($amount, 2, '.', ',') . ' USD',
+            'CLP' => '$'.number_format($amount, 0, ',', '.').' CLP',
+            'EUR' => '€'.number_format($amount, 2, ',', '.').' EUR',
+            'MXN' => '$'.number_format($amount, 2, '.', ',').' MXN',
+            default => '$'.number_format($amount, 2, '.', ',').' USD',
         };
     }
 }

@@ -42,4 +42,9 @@ class HomeController extends Controller
             'depositUsd'
         ));
     }
+
+    public function press()
+    {
+        return view('pages.press');
+    }
 }

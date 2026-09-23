@@ -42,7 +42,7 @@ class FlashTattoo extends Model
 
         static::creating(function ($flash) {
             if (empty($flash->slug)) {
-                $flash->slug = Str::slug($flash->title) . '-' . Str::random(5);
+                $flash->slug = Str::slug($flash->title).'-'.Str::random(5);
             }
         });
     }

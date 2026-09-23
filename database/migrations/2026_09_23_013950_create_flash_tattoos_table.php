@@ -29,7 +29,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        if (Schema::hasTable('booking_requests') && !Schema::hasColumn('booking_requests', 'flash_tattoo_id')) {
+        if (Schema::hasTable('booking_requests') && ! Schema::hasColumn('booking_requests', 'flash_tattoo_id')) {
             Schema::table('booking_requests', function (Blueprint $table) {
                 $table->foreignId('flash_tattoo_id')->nullable()->after('client_id')->constrained('flash_tattoos')->onDelete('set null');
             });

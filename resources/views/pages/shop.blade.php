@@ -1,36 +1,66 @@
 @extends('layouts.app')
 
-@section('title', 'Tienda de Dibujos & Láminas — FREDOSIS | Fine Art Prints & Originales')
-@section('meta_description', 'Compra dibujos originales a grafito y láminas giclée de autor de Fredosis. Envíos protegidos a todo el mundo. Pagos seguros con PayPal.')
+@section('title', 'Tienda — Original Drawings for Sale — © FREDO | FREDOSIS')
+@section('meta_description', 'Original drawings and fine art prints by Chilean artist Wladimir Inostroza (Fredo / Fredosis). Worldwide shipping in rigid protective box. PayPal & Webpay accepted.')
 
 @section('content')
 
-    <section class="py-20 px-6 md:px-16 max-w-7xl mx-auto space-y-12">
-        <!-- Header -->
-        <div class="text-center max-w-2xl mx-auto space-y-3">
-            <span class="text-xs uppercase tracking-widest text-[#d8c49d] font-semibold">Catálogo E-Commerce</span>
-            <h1 class="text-4xl md:text-6xl font-serif font-bold text-[#f5f5f3]">Dibujos & Láminas Fine Art</h1>
-            <p class="text-xs md:text-sm text-[#8e8e93]">
-                Piezas únicas originales a grafito y láminas de edición limitada impresas sobre papel 100% algodón Hahnemühle Photo Rag 308g.
+    <section class="py-16 md:py-24 px-6 md:px-16 max-w-7xl mx-auto space-y-12">
+        <!-- Header Inspired by Fredo's Sketch -->
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#18181b] border border-[#d8c49d]/30 text-xs text-[#d8c49d] font-mono tracking-wider">
+                <span>SHOP / ORIGINAL DRAWINGS</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-[#f5f5f3] tracking-tight">
+                Original Drawings for Sale
+            </h1>
+            <p class="text-xs md:text-sm text-[#8e8e93] leading-relaxed max-w-2xl mx-auto">
+                Piezas originales únicas a grafito, pastel suave y óleos de autor creadas por <strong class="text-white">Wladimir Inostroza (© FREDO)</strong>. Cada obra original se entrega con certificado de autenticidad y embalaje rígido de alta protección.
             </p>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#18181b] border border-[#2c2c30] text-xs text-[#d8c49d]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-                <span>Pagos directos y protegidos con <strong>PayPal</strong> en USD, CLP, EUR y MXN</span>
+            
+            <!-- Chilean Purchase Notice from Info drawing for sale.docx -->
+            <div class="p-4 rounded-xl bg-[#141416] border border-[#2c2c30] text-xs text-left md:text-center text-[#a6a6aa] space-y-2">
+                <p class="text-white font-medium">
+                    🇨🇱 <strong class="text-[#d8c49d]">Para compras Nacionales (Chile):</strong> Puedes realizar pago directo en pesos chilenos (CLP) vía Webpay o coordinar por email a 
+                    <a href="mailto:fredocontacto@gmail.com" class="text-[#d8c49d] underline font-mono">fredocontacto@gmail.com</a>.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4 text-[11px] text-[#777] pt-1">
+                    <span class="inline-flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                        PayPal (USD / Global) & Webpay (CLP)
+                    </span>
+                    <span>•</span>
+                    <button type="button" @click="document.getElementById('shipping-policy-modal').showModal()" class="text-[#d8c49d] hover:underline cursor-pointer">
+                        Ver Políticas de Envío y Embalaje
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- Products Grid -->
+        <!-- Products Grid Matching Boceto Pagina -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($products as $product)
-                <div class="bg-[#121214] border border-[#232326] rounded-xl overflow-hidden flex flex-col justify-between group hover:border-[#d8c49d]/40 transition-all">
+                @php
+                    $originalVariant = $product->variants->firstWhere('format_type', 'ORIGINAL') ?? $product->variants->first();
+                    $printVariant = $product->variants->firstWhere('format_type', 'PRINT');
+                @endphp
+                <div 
+                    class="bg-[#121214] border border-[#232326] rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-[#d8c49d]/50 transition-all shadow-xl"
+                    x-data="{ 
+                        selectedVariantId: {{ $originalVariant->id ?? 0 }},
+                        selectedPriceUsd: {{ $originalVariant->price_usd ?? $product->base_price_usd }},
+                        selectedPriceClp: {{ $originalVariant->price_clp ?? $product->base_price_clp }}
+                    }"
+                >
                     <div>
-                        <!-- Product Main Image -->
+                        <!-- Artwork Thumbnail -->
                         <div class="aspect-[4/5] overflow-hidden bg-black relative">
                             <a href="{{ route('shop.detail', $product->slug) }}">
                                 <img 
                                     src="{{ $product->main_image }}" 
-                                    alt="{{ $product->title }}" 
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                    alt="{{ $product->title }} - © FREDO" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 cursor-pointer"
+                                    loading="lazy"
                                 >
                             </a>
                             <!-- Badge -->
@@ -43,50 +73,94 @@
                                     Original Vendido
                                 </span>
                             @endif
+
+                            <button 
+                                type="button"
+                                @click="openLightbox({
+                                    title: '{{ addslashes($product->title) }}',
+                                    image_url: '{{ $product->main_image }}',
+                                    category: '{{ $product->category }}',
+                                    medium: '{{ addslashes($product->technique) }}',
+                                    dimensions: '{{ addslashes($product->dimensions) }}',
+                                    year: '{{ $product->created_at->year ?? '2022' }}',
+                                    description: '{{ addslashes($product->description) }}'
+                                })"
+                                class="absolute bottom-3 right-3 p-2 rounded-lg bg-black/70 text-white/80 hover:text-white hover:bg-black transition-all"
+                                title="Ampliar imagen"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                            </button>
                         </div>
 
-                        <!-- Details & Variants Selector -->
-                        <div class="p-6 space-y-4" x-data="{ selectedVariant: {{ $product->variants->first()->id ?? 0 }} }">
-                            <div>
-                                <span class="text-[10px] uppercase tracking-widest text-[#d8c49d] font-bold">{{ $product->technique }}</span>
-                                <h3 class="font-serif text-xl font-bold text-[#ededeb] mt-1 group-hover:text-[#d8c49d] transition-colors">
+                        <!-- Info Block Corresponding to the Sketch -->
+                        <div class="p-6 space-y-4">
+                            <!-- Technical Typography Block -->
+                            <div class="space-y-1">
+                                <h3 class="font-serif text-2xl font-bold tracking-wide text-[#ededeb] group-hover:text-[#d8c49d] transition-colors uppercase">
                                     <a href="{{ route('shop.detail', $product->slug) }}">{{ $product->title }}</a>
                                 </h3>
-                                <p class="text-xs text-[#8e8e93] mt-2 line-clamp-2 leading-relaxed">{{ $product->description }}</p>
+                                @if($product->dimensions)
+                                    <p class="text-xs font-mono text-[#a6a6aa]">{{ $product->dimensions }}</p>
+                                @endif
+                                <p class="text-xs uppercase tracking-wider text-[#d8c49d] font-semibold">
+                                    {{ $product->technique }}
+                                </p>
+                                @php
+                                    preg_match('/\b(19\d\d|20\d\d)\b/', ($product->short_description ?? '') . ' ' . $product->slug, $ym);
+                                    $artworkYear = $ym[0] ?? '';
+                                @endphp
+                                @if($artworkYear)
+                                    <p class="text-[11px] font-mono text-[#777]">
+                                        {{ $artworkYear }}
+                                    </p>
+                                @endif
+                                <p class="text-[11px] tracking-widest text-[#888] font-bold">
+                                    © FREDO
+                                </p>
                             </div>
 
-                            <!-- Format Variants Radio / Select -->
+                            <!-- Format Selector -->
                             <div class="space-y-1.5 border-t border-[#232326] pt-3">
-                                <label class="text-[11px] uppercase tracking-wider text-[#777] font-semibold block">Seleccionar Formato:</label>
+                                <label class="text-[11px] uppercase tracking-wider text-[#777] font-semibold block">Formato de Adquisición:</label>
                                 <select 
-                                    x-model="selectedVariant"
+                                    x-model="selectedVariantId"
+                                    @change="
+                                        @foreach($product->variants as $v)
+                                            if (selectedVariantId == {{ $v->id }}) {
+                                                selectedPriceUsd = {{ $v->price_usd }};
+                                                selectedPriceClp = {{ $v->price_clp }};
+                                            }
+                                        @endforeach
+                                    "
                                     class="w-full bg-[#18181b] border border-[#2c2c30] rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#d8c49d]"
                                 >
                                     @foreach($product->variants as $variant)
                                         <option value="{{ $variant->id }}">
-                                            {{ $variant->format_name }} — ${{ number_format($variant->price_usd, 0) }} USD (${{ number_format($variant->price_clp, 0, ',', '.') }} CLP)
+                                            {{ $variant->format_name }} — ${{ number_format($variant->price_usd, 0) }} USD
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
 
-                            <!-- Add to Cart Action Button -->
-                            <div class="pt-2 flex items-center gap-3">
+                            <!-- Price Display & Buy Button Matching Sketch -->
+                            <div class="pt-2 border-t border-[#232326] flex items-center justify-between gap-4">
+                                <div>
+                                    <div class="text-2xl font-serif font-bold text-[#d8c49d]">
+                                        <span x-text="'$' + selectedPriceUsd + ' USD'">${{ number_format($product->base_price_usd, 0) }} USD</span>
+                                    </div>
+                                    <div class="text-[11px] text-[#777] font-mono" x-text="'≈ $' + parseInt(selectedPriceClp).toLocaleString('es-CL') + ' CLP'">
+                                        ${{ number_format($product->base_price_clp, 0, ',', '.') }} CLP
+                                    </div>
+                                </div>
+
                                 <button 
                                     type="button"
-                                    @click="addToCart(selectedVariant)"
-                                    class="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-[#d8c49d] hover:bg-[#ebd7b1] text-black font-bold text-xs uppercase tracking-wider transition-all shadow-md"
+                                    @click="addToCart(selectedVariantId)"
+                                    class="px-6 py-3 rounded-lg bg-[#d8c49d] hover:bg-[#ebd7b1] text-black font-bold text-xs uppercase tracking-widest transition-all shadow-md flex items-center gap-2"
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-                                    <span>Añadir al Carrito</span>
+                                    <span>BUY</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                                 </button>
-                                <a 
-                                    href="{{ route('shop.detail', $product->slug) }}" 
-                                    class="p-3 rounded-lg border border-[#2c2c30] text-[#8e8e93] hover:text-white hover:border-white transition-all"
-                                    title="Ver ficha técnica"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -94,5 +168,48 @@
             @endforeach
         </div>
     </section>
+
+    <!-- Shipping Policy Modal from Page 6 of Art Catalog -->
+    <dialog id="shipping-policy-modal" class="bg-[#141416] text-[#ededeb] border border-[#2c2c30] rounded-2xl p-8 max-w-2xl w-full backdrop:bg-black/80 shadow-2xl m-auto">
+        <div class="space-y-6">
+            <div class="flex items-center justify-between border-b border-[#232326] pb-4">
+                <h3 class="font-serif text-2xl font-bold text-[#d8c49d]">Políticas de Envío & Pagos</h3>
+                <button onclick="document.getElementById('shipping-policy-modal').close()" class="text-[#8e8e93] hover:text-white text-xl">✕</button>
+            </div>
+            
+            <div class="space-y-4 text-xs text-[#a6a6aa] leading-relaxed font-sans max-h-[60vh] overflow-y-auto pr-2">
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Pagos (Payments)</h4>
+                    <p>Pagos internacionales mediante <strong>PayPal</strong> a la cuenta oficial: <code class="text-[#d8c49d] bg-black px-2 py-0.5 rounded">fredocontacto@gmail.com</code>. Para compras dentro de Chile se acepta transferencia bancaria directa y Webpay en pesos chilenos (CLP).</p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Envíos Internacionales (Shipping)</h4>
+                    <p>Los envíos internacionales se realizan a través de <strong>Correos de Chile</strong> (servicio certificado con seguimiento online en www.correos.cl). El tiempo de entrega internacional estimado es de <strong>30 días hábiles</strong>.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Embalaje Protegido</h4>
+                    <p>Cada dibujo original, lámina fine art o polera se envía en <strong>caja o tubo rígido de alta resistencia con bolsa protectora antihumedad</strong> para garantizar que llegue en perfectas condiciones a cualquier lugar del mundo.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Despacho & Número de Seguimiento</h4>
+                    <p>Las órdenes se despachan los días <strong>jueves posteriores a la confirmación del pago</strong>. Se enviará de inmediato el código de seguimiento (tracking code) a tu correo electrónico.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Marcos e Impuestos Aduaneros</h4>
+                    <p>Los dibujos no incluyen marco a menos que se especifique expresamente en la fotografía y descripción. Los aranceles e impuestos que aplique la aduana del país de destino son responsabilidad exclusiva del comprador.</p>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-[#232326] flex justify-end">
+                <button onclick="document.getElementById('shipping-policy-modal').close()" class="px-5 py-2.5 rounded-lg bg-[#d8c49d] text-black font-bold text-xs uppercase tracking-wider">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </dialog>
 
 @endsection

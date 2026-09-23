@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BookingRequest;
 use App\Models\Client;
+use App\Models\FlashTattoo;
 use App\Models\SiteSetting;
 use App\Models\TattooStyle;
 use App\Services\BookingEngineService;
@@ -22,7 +23,7 @@ class BookingController extends Controller
 
         $selectedFlash = null;
         if ($request->has('flash_id')) {
-            $selectedFlash = \App\Models\FlashTattoo::where('id', $request->query('flash_id'))->first();
+            $selectedFlash = FlashTattoo::where('id', $request->query('flash_id'))->first();
         }
 
         return view('pages.booking', compact('styles', 'studioLocation', 'studioAddress', 'depositClp', 'depositUsd', 'selectedFlash'));

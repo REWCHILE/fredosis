@@ -209,6 +209,25 @@
                     </div>
                 </a>
 
+                <!-- 3c. Prensa & Bio -->
+                <a 
+                    href="{{ route('press') }}" 
+                    class="flex items-center gap-3.5 px-3.5 py-3 rounded-lg text-sm font-medium transition-all group {{ request()->routeIs('press*') ? 'bg-[#1e1e22] text-[#d8c49d]' : 'text-[#a6a6aa] hover:bg-[#1a1a1d] hover:text-[#f2f2f0]' }}"
+                >
+                    <div class="w-7 h-7 flex items-center justify-center shrink-0 text-[#d8c49d]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform">
+                            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                            <path d="M18 14h-8"/>
+                            <path d="M15 18h-5"/>
+                            <path d="M10 6h8v4h-8V6Z"/>
+                        </svg>
+                    </div>
+                    <div class="sidebar-full-label flex items-center justify-between w-full whitespace-nowrap">
+                        <span class="font-semibold">Prensa & Bio</span>
+                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-[#d8c49d]/10 text-[#d8c49d] border border-[#d8c49d]/20">Global</span>
+                    </div>
+                </a>
+
                 <!-- 4. Pasarela de Pago & Carrito -->
                 <button 
                     type="button"

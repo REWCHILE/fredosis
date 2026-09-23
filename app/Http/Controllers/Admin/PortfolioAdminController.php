@@ -23,6 +23,7 @@ class PortfolioAdminController extends Controller
     public function create()
     {
         $styles = TattooStyle::all();
+
         return view('admin.portfolio.form', ['artwork' => null, 'styles' => $styles]);
     }
 
@@ -41,7 +42,7 @@ class PortfolioAdminController extends Controller
             'sort_order' => 'nullable|integer',
         ]);
 
-        $validated['slug'] = Str::slug($validated['title']) . '-' . rand(100, 999);
+        $validated['slug'] = Str::slug($validated['title']).'-'.rand(100, 999);
         $validated['is_featured'] = $request->has('is_featured');
         $validated['sort_order'] = $validated['sort_order'] ?? 0;
 
@@ -54,6 +55,7 @@ class PortfolioAdminController extends Controller
     {
         $artwork = PortfolioItem::findOrFail($id);
         $styles = TattooStyle::all();
+
         return view('admin.portfolio.form', compact('artwork', 'styles'));
     }
 

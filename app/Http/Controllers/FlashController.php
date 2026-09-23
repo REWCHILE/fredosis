@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\FlashTattoo;
 use App\Models\SiteSetting;
-use App\Services\CurrencyService;
 use Illuminate\Http\Request;
 
 class FlashController extends Controller

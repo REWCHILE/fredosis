@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\PortfolioItem;
-use App\Models\TattooStyle;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller

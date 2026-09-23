@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\BookingRequest;
 use App\Models\Client;
+use App\Models\FlashTattoo;
 use App\Models\Order;
 use App\Models\PortfolioItem;
 use App\Models\Product;
-use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         $portfolioCount = PortfolioItem::count();
         $productsCount = Product::where('is_active', true)->count();
-        $flashAvailableCount = \App\Models\FlashTattoo::where('is_active', true)->where('is_claimed', false)->count();
+        $flashAvailableCount = FlashTattoo::where('is_active', true)->where('is_claimed', false)->count();
         $ordersCount = Order::count();
         $ordersRevenue = Order::where('payment_status', 'PAID')->sum('total_amount');
 

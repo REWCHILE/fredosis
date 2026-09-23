@@ -392,6 +392,69 @@
 
 
     <!-- ========================================================
+         GLOBAL PRESS & RECOGNITION SECTION (THE SUN, DAILY MAIL, RIPLEY'S)
+         ======================================================== -->
+    <section class="py-20 bg-[#0d0d0f] border-y border-[#232326]">
+        <div class="px-6 md:px-16 max-w-7xl mx-auto space-y-12">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div class="space-y-2">
+                    <span class="text-xs uppercase tracking-widest text-[#d8c49d] font-semibold">Reconocimiento Internacional</span>
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-[#f5f5f3]">Prensa & Medios Mundiales</h2>
+                    <p class="text-xs md:text-sm text-[#8e8e93] max-w-2xl leading-relaxed">
+                        El virtuosismo en dibujo 3D anamórfico de <strong class="text-white">Wladimir Inostroza (Fredo)</strong> ha sido publicado en medios editoriales de Europa, Estados Unidos y Chile.
+                    </p>
+                </div>
+                <a href="{{ route('press') }}" class="text-xs uppercase tracking-widest text-[#d8c49d] hover:underline font-semibold flex items-center gap-1 shrink-0">
+                    <span>Ver Archivo de Prensa & Documental</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </a>
+            </div>
+
+            <!-- Press Badges & Quotes Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Daily Mail -->
+                <div class="p-6 rounded-2xl bg-[#121214] border border-[#26262a] space-y-3 hover:border-[#d8c49d]/40 transition-all shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <span class="font-serif font-bold text-lg text-white">Daily Mail</span>
+                        <span class="text-[10px] font-mono text-[#777]">Londres, UK</span>
+                    </div>
+                    <p class="text-xs text-[#d8c49d] font-semibold italic">"He's a modern day master making incredible 3D images that pop off the page - armed only with a pencil and a piece of paper."</p>
+                    <p class="text-[11px] text-[#8e8e93]">Reportaje exclusivo sobre el dominio de la perspectiva forzada y sombras de carboncillo.</p>
+                </div>
+
+                <!-- Ripley's Believe It or Not! -->
+                <div class="p-6 rounded-2xl bg-[#121214] border border-[#26262a] space-y-3 hover:border-[#d8c49d]/40 transition-all shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <span class="font-serif font-bold text-lg text-white">Ripley's Believe It or Not!</span>
+                        <span class="text-[10px] font-mono text-[#777]">Libro Oficial Pág. 221</span>
+                    </div>
+                    <p class="text-xs text-[#d8c49d] font-semibold italic">"Chilean artist Fredo creates mind-boggling 3-D pencil drawings that appear to rise out of the page."</p>
+                    <p class="text-[11px] text-[#8e8e93]">Incluido en el anuario oficial global de prodigios y curiosidades humanas extraordinarias.</p>
+                </div>
+
+                <!-- The Sun -->
+                <div class="p-6 rounded-2xl bg-[#121214] border border-[#26262a] space-y-3 hover:border-[#d8c49d]/40 transition-all shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <span class="font-serif font-bold text-lg text-white">The Sun</span>
+                        <span class="text-[10px] font-mono text-[#777]">UK • Alison Maloney</span>
+                    </div>
+                    <p class="text-xs text-[#d8c49d] font-semibold italic">"Artist's amazing 3D images: A young artist is making a huge impression on the art world with his 3D drawings."</p>
+                    <p class="text-[11px] text-[#8e8e93]">Cobertura sobre el descubrimiento fortuito de la tridimensionalidad en el dibujo a mano alzada.</p>
+                </div>
+            </div>
+
+            <!-- Banner link to full press -->
+            <div class="pt-4 text-center">
+                <a href="{{ route('press') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#18181b] border border-[#333] hover:border-[#d8c49d] text-white hover:text-[#d8c49d] text-xs font-semibold uppercase tracking-wider transition-all">
+                    <span>Explorar reportajes de TVN y Documental sobre TOOL</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================================
          SEO & FAQ SECTION: PREGUNTAS FRECUENTES SOBRE TATUAJES
          Optimizado para: 'tatuajes cerca de mi', 'precio tatuajes',
          'metro santa ana', 'linea fina', 'blackwork', 'cover up', 'paypal'
@@ -542,7 +605,7 @@
             <div class="space-y-4 md:col-span-2">
                 <span class="font-serif text-2xl font-bold tracking-widest text-[#f5f5f3]">FREDOSIS</span>
                 <p class="text-xs text-[#8e8e93] max-w-md leading-relaxed">
-                    Atelier de Bellas Artes, Dibujo y Tatuaje Contemporáneo. Obras originales, láminas giclée de conservación y sesiones privadas en Santiago Centro, Chile.
+                    Atelier de Bellas Artes, Dibujo 3D Anamórfico y Tatuaje de Autor por <strong class="text-white">Wladimir Inostroza (Fredo)</strong>. Obras originales únicas, láminas giclée de conservación y sesiones privadas en Santiago Centro, Chile.
                 </p>
                 <div class="pt-2 text-xs text-[#d8c49d] flex items-center gap-2">
                     <span>📍 Metro Santa Ana, Santiago Centro, Región Metropolitana</span>
@@ -552,10 +615,11 @@
             <div class="space-y-3">
                 <span class="text-xs uppercase tracking-widest text-[#d8c49d] font-bold">Navegación</span>
                 <ul class="space-y-2 text-xs text-[#8e8e93]">
-                    <li><a href="{{ route('portfolio') }}" class="hover:text-white transition-colors">Portafolio de Obras</a></li>
-                    <li><a href="{{ route('shop') }}" class="hover:text-white transition-colors">Tienda de Dibujos & Láminas</a></li>
+                    <li><a href="{{ route('portfolio') }}" class="hover:text-white transition-colors">Portafolio de Obras (45 Obras)</a></li>
+                    <li><a href="{{ route('shop') }}" class="hover:text-white transition-colors">Tienda — Original Drawings for Sale</a></li>
+                    <li><a href="{{ route('flash.index') }}" class="hover:text-white transition-colors">Flashes de Tatuaje Disponibles</a></li>
+                    <li><a href="{{ route('press') }}" class="hover:text-white transition-colors">Prensa Mundial & Reconocimientos</a></li>
                     <li><a href="{{ route('booking') }}" class="hover:text-white transition-colors">Agenda de Tatuajes</a></li>
-                    <li><a href="{{ route('checkout') }}" class="hover:text-white transition-colors">Pasarela de Pago PayPal</a></li>
                     <li><a href="{{ route('admin.login') }}" class="hover:text-white transition-colors">Acceso de Administración</a></li>
                 </ul>
             </div>
@@ -563,10 +627,11 @@
             <div class="space-y-3">
                 <span class="text-xs uppercase tracking-widest text-[#d8c49d] font-bold">Contacto Directo</span>
                 <ul class="space-y-2 text-xs text-[#8e8e93]">
-                    <li>Email: <a href="mailto:contacto@fredosis.art" class="hover:text-white transition-colors">contacto@fredosis.art</a></li>
+                    <li>Email Oficial: <a href="mailto:fredocontacto@gmail.com" class="hover:text-[#d8c49d] text-white transition-colors font-mono">fredocontacto@gmail.com</a></li>
+                    <li>Instagram: <a href="https://instagram.com/fredosis.art" target="_blank" class="hover:text-[#d8c49d] text-[#d8c49d] transition-colors">@fredosis.art</a></li>
                     <li>WhatsApp: <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $whatsappPhone) }}" target="_blank" class="hover:text-white transition-colors">{{ $whatsappPhone }}</a></li>
                     <li>Atención: Martes a Sábado (11:00 a 20:00 hrs)</li>
-                    <li>Medios de pago: PayPal, Transferencia bancaria, Tarjetas</li>
+                    <li>Envíos: Despacho mundial certificado por Correos de Chile</li>
                 </ul>
             </div>
         </div>
