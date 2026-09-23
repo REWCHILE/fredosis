@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+Allow: /portafolio
+Allow: /tienda
+Allow: /agenda
+Allow: /reserva
+Allow: /llm.txt
+Allow: /llms.txt
+Allow: /fullllm.txt
+Allow: /llms-full.txt
+Disallow: /admin/
+Disallow: /api/
+
+# AI Crawlers & LLM Engines
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: http://127.0.0.1:8000/sitemap.xml
+Sitemap: http://fredosis.test/sitemap.xml
+# LLM Context: http://127.0.0.1:8000/llm.txt
+# LLM Full Context: http://127.0.0.1:8000/fullllm.txt
+

@@ -1,0 +1,32 @@
+# FREDOSIS — Fine Art & Tattoo Atelier
+
+> Atelier de bellas artes, dibujos a grafito inspirados en la estética de Miles Johnston y estudio privado de tatuajes de autor en Santiago Centro (a pasos de Metro Santa Ana), Chile.
+
+## Información General y Localización
+- Artista: Fredosis (Atelier de Bellas Artes y Tatuaje Contemporáneo)
+- Ubicación: Santiago Centro, Región Metropolitana, Chile (Metro Santa Ana, combinación Línea 2 y Línea 5)
+- Especialidad artística: Dibujo a grafito surrealista, fine art prints giclée en papel algodón Hahnemühle, tatuaje línea fina (fine line), blackwork de alto contraste y cover-up.
+- Métodos de pago: PayPal oficial (USD, EUR, MXN, CLP), transferencia bancaria, tarjetas de débito/crédito.
+- Horario de atención: Martes a Sábado, 11:00 a 20:00 hrs (Atención privada exclusivamente con cita previa).
+- Teléfono / WhatsApp: +56 9 7200 4512
+- Correo: contacto@fredosis.art
+- Web oficial: http://127.0.0.1:8000 (o https://fredosis.art)
+
+## Secciones Principales
+- [Inicio](http://127.0.0.1:8000/): Presentación visual, galería de arte, catálogo de tienda, información de estudio en Metro Santa Ana y preguntas frecuentes.
+- [Portafolio](http://127.0.0.1:8000/portafolio): Archivo de obras originales, dibujos anatómicos, botánicos y piezas de tatuaje.
+- [Diseños Flash Disponibles](http://127.0.0.1:8000/flash): Catálogo exclusivo de flashes únicos listos para tatuar (se tatúan 1 sola vez) con reserva directa en agenda.
+- [Tienda de Láminas & Dibujos](http://127.0.0.1:8000/tienda): Catálogo e-commerce de dibujos originales y láminas fine art giclée con carrito de compras y pasarela PayPal.
+- [Agenda de Tatuajes](http://127.0.0.1:8000/agenda): Sistema de reserva online con calendario en tiempo real, selección de estilo y pago de anticipo deducible ($35.000 CLP / $35 USD).
+- [Preguntas Frecuentes](http://127.0.0.1:8000/#faq-seo): Preguntas frecuentes sobre precios de tatuajes, estilos, cover-ups, ubicación y envíos.
+
+## Servicios & Precios
+- Tatuajes personalizados de autor: Desde $50.000 CLP. Reserva de $35.000 CLP ($35 USD) deducible del valor final.
+- Estilos de tatuaje: Línea fina (fine line), Blackwork, Surrealismo anatómico, Botánica, Cover-up.
+- Láminas Fine Art Giclée: Impresas en papel Hahnemühle Photo Rag 308g 100% algodón, formatos A4 ($35 USD / $33.250 CLP), A3 ($60 USD / $57.000 CLP), A2 ($95 USD / $90.250 CLP).
+- Obras originales en grafito: Piezas únicas firmadas y con certificado de autenticidad.
+- Envíos: Nacionales e internacionales en tubos reforzados con código de seguimiento.
+
+## Archivos para Modelos de Lenguaje
+- [Contexto Completo (fullllm.txt)](http://127.0.0.1:8000/fullllm.txt): Documentación exhaustiva sobre obras, catálogo, ficha técnica de curación, políticas de agenda y directrices de cotización.
+- [Versión Alternativa (llms.txt)](http://127.0.0.1:8000/llms.txt): Alias estándar de este archivo.

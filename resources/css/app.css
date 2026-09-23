@@ -1,0 +1,208 @@
+@import 'tailwindcss';
+
+@source '../views/**/*.blade.php';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/playfairdisplay/v37/6nuq8v5keVu79ebPJ9GqE9XPBpYf.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZs.woff2) format('woff2');
+}
+
+:root {
+  --background: #0b0b0c;
+  --foreground: #ededeb;
+  --surface: #141416;
+  --surface-hover: #1c1c1f;
+  --card: #151517;
+  --accent: #d8c49d; /* Warm antique bone gold / archival tint */
+  --accent-foreground: #0b0b0c;
+  --muted: #8e8e93;
+  --border: #232326;
+  --border-light: rgba(255, 255, 255, 0.08);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fine Art Editorial Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333230 #0b0b0c;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0b0c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2e;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ==========================================================
+   LEFT COLLAPSIBLE / PINNABLE SIDEBAR NAVIGATION
+   "Menú horizontal hacia la izquierda que se oculte sin mouse,
+   se expanda con hover y tenga botón para anclar este fenómeno"
+   ========================================================== */
+
+#fredosis-sidebar {
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s ease, box-shadow 0.35s ease;
+  will-change: width, transform;
+}
+
+/* Unpinned Desktop State */
+@media (min-width: 768px) {
+  #fredosis-sidebar:not(.is-pinned) {
+    width: 76px;
+  }
+
+  #fredosis-sidebar:not(.is-pinned):hover {
+    width: 320px;
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.85);
+  }
+
+  #fredosis-sidebar:not(.is-pinned) .sidebar-full-label {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  #fredosis-sidebar:not(.is-pinned):hover .sidebar-full-label {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3s ease 0.1s;
+  }
+
+  /* Pinned Desktop State */
+  #fredosis-sidebar.is-pinned {
+    width: 300px;
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.6);
+  }
+
+  #fredosis-sidebar.is-pinned .sidebar-full-label {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Main content offset when pinned */
+  body.sidebar-is-pinned #main-content {
+    margin-left: 300px;
+    transition: margin-left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  body:not(.sidebar-is-pinned) #main-content {
+    margin-left: 76px;
+    transition: margin-left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+/* Mobile Sidebar */
+@media (max-width: 767px) {
+  #fredosis-sidebar {
+    width: 290px;
+    transform: translateX(-100%);
+  }
+
+  #fredosis-sidebar.mobile-open {
+    transform: translateX(0);
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.9);
+  }
+
+  #main-content {
+    margin-left: 0 !important;
+  }
+}
+
+/* Pin button rotation and glow */
+.pin-btn.active {
+  color: var(--accent);
+  background: rgba(216, 196, 157, 0.15);
+  border-color: rgba(216, 196, 157, 0.4);
+}
+
+.pin-btn.active svg {
+  transform: rotate(-45deg);
+}
+
+/* Artwork Image Zoom Lightbox */
+.fine-art-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.fine-art-card:hover {
+  transform: translateY(-4px);
+}
+
+.fine-art-card img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+}
+
+.fine-art-card:hover img {
+  transform: scale(1.035);
+}
+
+/* Slide-over cart animation */
+#cart-drawer {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#cart-drawer.cart-open {
+  transform: translateX(0);
+}
+
+#cart-backdrop {
+  transition: opacity 0.3s ease;
+}

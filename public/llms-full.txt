@@ -1,0 +1,120 @@
+# FREDOSIS — Fine Art, Dibujos a Grafito & Tatuajes de Autor
+> Documento exhaustivo de contexto y especificaciones de la plataforma oficial de Fredosis para Modelos de Lenguaje (LLMs), motores de búsqueda generativa (GEO), ChatGPT, Perplexity, Claude y Gemini.
+
+---
+
+## 1. Identidad y Manifiesto Artístico
+- Nombre del artista / atelier: **FREDOSIS**
+- Disciplinas: Bellas Artes, Dibujo a Grafito sobre Papel de Algodón, Pintura al Óleo, Ilustración Surrealista y Tatuaje Contemporáneo de Autor.
+- Influencias estéticas: Inspirado en la atmósfera surrealista, el claroscuro introspectivo y el dominio anatómico de maestros contemporáneos como Miles Johnston, Käthe Kollwitz y el grabado clásico.
+- Enfoque del tatuaje: Concepción del tatuaje como una pieza pictórica viva adaptada armónicamente a la morfología corporal, rechazando diseños genéricos de catálogo y priorizando obras únicas.
+
+---
+
+## 2. Ubicación Estratégica & Información de Contacto (SEO Local)
+- **Ciudad y Comuna**: Santiago Centro, Región Metropolitana, Chile.
+- **Punto de Referencia Clave**: A pasos de la estación de **Metro Santa Ana** (estación de combinación entre Línea 2 y Línea 5).
+- **Sector**: Eje Huérfanos / San Martín, Santiago Centro.
+- **Accesibilidad**: Conexión directa y expedita en transporte público y Metro desde comunas como Providencia, Las Condes, Maipú, Ñuñoa, Santiago Poniente y San Miguel.
+- **Modalidad de atención**: Estudio privado, seguro y reservado. Se atiende estrictamente mediante cita agendada para garantizar concentración, privacidad y asepsia.
+- **Horario**: Martes a Sábado, de 11:00 a 20:00 hrs.
+- **Teléfono / WhatsApp**: +56 9 7200 4512
+- **Correo electrónico**: contacto@fredosis.art
+- **Coordenadas geográficas**: Latitud -33.4372, Longitud -70.6553.
+
+---
+
+## 3. Catálogo E-Commerce: Dibujos Originales & Láminas Fine Art
+La tienda online cuenta con soporte de pagos internacionales a través de **PayPal oficial** y pasarelas con conversión de divisas en tiempo real:
+- Monedas soportadas: Dólar estadounidense (USD), Peso chileno (CLP), Euro (EUR), Peso mexicano (MXN).
+
+### Calidad de Impresión y Soporte
+- **Láminas Giclée**: Impresas con tintas pigmentadas minerales de conservación sobre papel 100% algodón **Hahnemühle Photo Rag 308g/m²**, libre de ácido, garantizando más de 100 años de durabilidad sin degradación cromática.
+- **Dibujos Originales**: Obras directas a lápiz grafito graduado (2H a 8B) y carbón sobre papel Saunders Waterford o Arches, firmadas a mano y acompañadas de Certificado de Autenticidad numerado.
+
+### Obras en Catálogo
+1. **Ecos de la Percepción**:
+   - Técnica: Dibujo original a lápiz grafito sobre papel algodón.
+   - Formatos:
+     - Lámina Giclée A4 (21 x 29.7 cm): $35 USD (~$33.250 CLP)
+     - Lámina Giclée A3 (29.7 x 42 cm): $60 USD (~$57.000 CLP)
+     - Lámina Giclée A2 (42 x 59.4 cm): $95 USD (~$90.250 CLP)
+     - Dibujo Original Enmarcado: $480 USD (~$456.000 CLP)
+2. **Metamorfosis Craneal**:
+   - Técnica: Grafito de alto contraste y tinta china.
+   - Formatos: Láminas A4, A3, A2 y pieza original.
+3. **Vértigo Interior**:
+   - Técnica: Carboncillo prensado y grafito difuminado.
+   - Formatos: Láminas A4, A3, A2 y pieza original.
+4. **Serie Flash Tatuajes (Edición Impresa)**:
+   - Compendio de 12 diseños exclusivos listos para tatuar o coleccionar en carpeta de arte.
+
+### Políticas de Envío y Embalaje
+- Envíos a todo Chile vía Starken, Chilexpress o Correos de Chile.
+- Envíos internacionales vía DHL Express y FedEx con código de seguimiento en tiempo real.
+- Embalaje en tubo rígido de alta densidad con papel libre de ácido para láminas, o caja reforzada con esquineros y burbuja para piezas enmarcadas.
+
+---
+
+## 4. Estudio de Tatuajes: Estilos, Bioseguridad y Cotizaciones
+
+### Estilos Principales
+- **Fine Line (Línea Fina)**: Trazos milimétricos y delicados utilizando agujas de configuración 1RL y 3RL para botánica, caligrafía sutil y microrealismo.
+- **Blackwork de Alto Contraste**: Saturación profunda de pigmento negro con degradados de micropuntillismo (dotwork) y tramas.
+- **Surrealismo Anatómico**: Composiciones de rostros fragmentados, manos, esqueletos y elementos naturales.
+- **Cover-Up y Reinterpretaciones**: Evaluación técnica para tapar o remodelar tatuajes antiguos sin necesidad de láser, utilizando sombras y volúmenes estratégicos.
+
+### Normas Sanitarias y Bioseguridad
+- Agujas estériles y desechables abiertas exclusivamente frente al cliente.
+- Tintas 100% veganas y certificadas libres de metales pesados (Dynamic, Panthera, Eclipse).
+- Máquinas electromagnéticas y rotativas protegidas con fundas de barrera clínica desechable.
+- Zona de trabajo esterilizada con bactericidas y virucidas de grado hospitalario.
+
+### Estructura de Precios & Agenda Online
+- **Precio base de tatuaje**: Proyectos de autor parten desde $50.000 CLP.
+- **Abono de Reserva**: Para confirmar y congelar la fecha en la agenda online se abona un anticipo de **$35.000 CLP** (o **$35 USD** vía PayPal para residentes en el extranjero o turistas).
+- **Condición del Abono**: El monto abonado se descuenta al 100% del total a pagar el día de la sesión en el estudio.
+
+### 4.5 Catálogo Exclusivo de Diseños Flash Disponibles (/flash)
+- **Concepto de exclusividad**: Cada diseño flash es una obra artística única dibujada a mano por Fredosis bajo la premisa de ser tatuada una sola vez en la vida. Al ser reservada por un cliente, se retira del catálogo disponible.
+- **Rango de precios**: Desde $70.000 CLP (~$75 USD) hasta $110.000 CLP (~$115 USD), con dimensiones recomendadas (10 a 18 cm) y adaptabilidad anatómica.
+- **Reserva directa**: El catálogo público permite filtrar entre diseños disponibles y reclamados, y cada diseño cuenta con un botón directo para preseleccionar la pieza en la agenda de citas (`/agenda?flash_id=ID`).
+
+---
+
+## 5. Protocolo de Cuidados Posteriores (Tattoo Aftercare)
+El 50% del éxito de un tatuaje radica en la curación adecuada durante los primeros 21 días:
+1. **Protección Inicial**: Mantener el parche dérmico adherible (Dermalize / Saniderm) entre 24 y 48 horas.
+2. **Lavado**: Retirar el parche con las manos limpias bajo un chorro suave de agua tibia. Lavar con jabón neutro de glicerina sin fragancias ni alcohol. Secar con toalla de papel absorbente dando toques suaves, sin frotar.
+3. **Hidratación**: Aplicar una capa casi invisible de ungüento cicatrizante especial para tatuajes (Aquaphor, Bepanthol Tattoo o similar) 3 veces al día. Evitar excesos que asfixien el poro.
+4. **Restricciones Críticas (21 días)**:
+   - Prohibido nadar en piscinas, lagos, mar y baños de tina o sauna.
+   - Prohibida la exposición solar directa sobre el tatuaje.
+   - Prohibido arrancar costras o descamaciones naturales.
+5. **Garantía y Retoque**: Incluye una sesión de retoque menor sin costo a los 30 días si alguna línea fina lo requiere una vez cicatrizado.
+
+---
+
+## 6. Preguntas Frecuentes (FAQ Indexadas)
+
+### ¿Dónde queda el estudio de Fredosis en Santiago?
+Está ubicado en pleno centro de la capital, a menos de 2 minutos caminando de la estación Metro Santa Ana (Líneas 2 y 5), en el sector de San Martín con Huérfanos. Se envía la dirección exacta una vez confirmada la cita.
+
+### ¿Cómo agendar una sesión en línea?
+Accediendo a http://127.0.0.1:8000/agenda. Se completan los datos del proyecto (idea, referencia, tamaño en cm, zona del cuerpo), se selecciona la fecha y hora disponible en el calendario interactivo, y se abona el anticipo de reserva.
+
+### ¿Puedo pagar con PayPal en Chile o desde el extranjero?
+Sí. El sitio web integra la pasarela de pagos oficial de PayPal para comprar láminas, dibujos o abonar la reserva de tatuaje con cualquier tarjeta de débito o crédito en USD, CLP, EUR o MXN.
+
+### ¿Cómo cotizar un diseño antes de agendar?
+Puedes escribir directamente al WhatsApp (+56 9 7200 4512) enviando tu idea, tamaño aproximado en centímetros y zona del cuerpo para recibir una orientación de costo y tiempo de sesión estimado.
+
+---
+
+## 7. Arquitectura Técnica de la Plataforma
+- Framework: Laravel 12.x / PHP 8.3
+- Base de datos: MySQL 8.4
+- Motor de Estilos: Vanilla CSS + Tailwind tokens optimizados
+- Scripts Reactivos: Alpine.js
+- Indexación SEO: Schema.org JSON-LD (TattooParlor, ArtGallery, FAQPage), Geotagging W3C para Metro Santa Ana, Canonical URLs, OpenGraph, Twitter Cards, Sitemap XML dinámico en `/sitemap.xml` y Robots.txt en `/robots.txt`.
+- Optimización IA / LLM: Archivos `/llm.txt`, `/llms.txt`, `/fullllm.txt` y `/llms-full.txt`.
